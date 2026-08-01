@@ -1,0 +1,5 @@
+youtube-transcript-api
+trafilatura
+google-genai
+markdown
+oembed
