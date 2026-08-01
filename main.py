@@ -45,15 +45,15 @@ while True:
                     #make the title discoverable
                     global title
                     title1 = response.getData()['title'].replace(" ", "_").strip(":?!&").lower()
-                    title = re.sub(r'[\/*?:"<>|]', "", title1)
                     
                     #if error in title
-                    if title == None:
+                    if title1 == None:
                         title = "rename_this"
                         print("There was an error in getting the title. Rename after finishing...")
                         
                     else:
-                        pass
+                        title2 = title1.replace(" ", "_").strip(":?!&").lower()
+                        title = re.sub(r'[\/*?:-"<>|]', "", title2)
                     
                     #loops threw the transcript to fetch all of the text
                     for text in ytTrans:
@@ -149,6 +149,9 @@ while True:
             #gemini server down
             elif "500" in str(e):
                 print(f"ERROR: gemini servers down")
+            
+            elif "400" in str(e):
+                print(f"You have not configured your Gemini API key")
             
             else:
                 print(f"Gemini call failed: {e}")
